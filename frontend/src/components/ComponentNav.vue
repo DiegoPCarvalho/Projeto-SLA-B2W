@@ -82,7 +82,6 @@ export default {
 }
 
 .conteudo {
-  border: 5px solid;
   height: 560px;
   width: 100%;
   margin-top: 15px;

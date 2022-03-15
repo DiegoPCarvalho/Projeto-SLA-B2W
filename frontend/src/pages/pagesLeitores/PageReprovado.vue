@@ -1,13 +1,15 @@
 <template>
   <div>
-    <h1>Aguardando Chegar</h1>
+      <h1>
+          Reprovado
+      </h1>
   </div>
 </template>
 
 <script>
-  export default {
-  
-  }
+export default {
+
+}
 </script>
 
 <style>

@@ -1,35 +1,35 @@
 <template>
   <div class="master">
-      <div class="links">
+      <div class="lks1">
         <h3>Coletores:</h3>
         <div class="rotas">
           <div class="bt1">
-            <router-link to="/AguardandoChegar" class="caminho1">Aguardando Chegar na Zhaz</router-link> 
+            <router-link to="/AguardandoChegarColetores" class="caminho1">Aguardando Chegar na Zhaz</router-link> 
           </div>
           <div class="bt2">
-            <router-link to="/AguardandoVistoria" class="caminho2">Aguardando Vistoria</router-link>
+            <router-link to="/AguardandoVistoriaColetores" class="caminho2">Aguardando Vistoria</router-link>
           </div>
           <div class="bt1">
-           <router-link class="caminho1">Aguardando Aprovação</router-link>
+           <router-link to="/AguardandoAprovacaoColetores" class="caminho1">Aguardando Aprovação</router-link>
           </div>
           <div class="bt2">
-            <router-link class="caminho2">Aprovado</router-link>
+            <router-link to="/AprovadoColetores" class="caminho2">Aprovado</router-link>
           </div>
           <div class="bt1">
-            <router-link cclass="caminho1">Em manutenção</router-link>
+            <router-link to="/EmManutencaoColetores" class="caminho1">Em Manutenção</router-link>
           </div>
           <div class="bt2">
-            <router-link class="caminho2">Manutenção Conlcuida</router-link>
+            <router-link to="/ManutencaoConcluidaColetores" class="caminho2">Manutenção Conlcuida</router-link>
           </div>
           <div class="bt1">
-            <router-link class="caminho1">Reprovado</router-link>
+            <router-link to="/ReprovadoColetores" class="caminho1">Reprovado</router-link>
           </div>
           <div class="bt2">
-            <router-link class="caminho2">Finalizada</router-link>
+            <router-link to="/FinalizadosColetores" class="caminho2">Finalizada</router-link>
           </div>
         </div>
       </div>
-      <div class="tables">
+      <div class="tb">
         <h1> Tabels </h1>
         <router-view></router-view>
       </div>     
@@ -48,23 +48,23 @@
   flex-direction: row;
   justify-content: flex-start;
 }
-.links {
-  border: 5px solid;
+
+.lks1 {
   height: 540px;
   width: 20%;
 }
-.links > h3{
+.lks1 > h3{
   display: flex;
   justify-content: center;
   align-content: center;
   font-size: 50px;
   font-weight: bold;
 }
-.tables {
+.tb {
   border: 5px solid;
   height: 540px;
   width: 79%;
-  margin-left: 5px;
+  margin-left: 10px;
 }
 .rotas {
   display: flex;
