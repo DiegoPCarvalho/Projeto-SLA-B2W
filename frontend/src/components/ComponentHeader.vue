@@ -6,7 +6,10 @@
      </router-link>
    </div>
    <div class="titulo">
-     <h1 class="h1">Painel de Acompanhamento do Sla B2W</h1>
+     <h1 class="h1">Painel SLA B2W</h1>
+   </div>
+   <div class="logo2">
+       <img src="../assets/img/lgb2.png" class="zhaz">
    </div>
  </div>
 </template>
@@ -34,7 +37,7 @@ export default {
   }
   .logo {
     display: flex;
-    margin-right: 200px;
+    margin-right: 390px;
    
   }
   .titulo {
@@ -61,7 +64,11 @@ export default {
     margin: 0;
     font-weight: bolder;
     font-family: 'Times New Roman', Times, serif;
+    font-size: 50px;
     align-items: center;
   } 
   
+  .logo2 {
+    margin-left: 530px;
+  }
 </style>

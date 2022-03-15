@@ -15,7 +15,7 @@
         </div>
     </div>
     <div class="conteudo">
-        <router-view></router-view>
+      <router-view></router-view>
     </div>
   </div>
 </template>
@@ -53,7 +53,7 @@ export default {
     margin-right: 15px;
     
   
-    width: 140px;
+    width: 155px;
     height: 100%;
     background-color: rgb(12,74,195);
    }
@@ -83,6 +83,9 @@ export default {
 
 .conteudo {
   border: 5px solid;
-  height: 50px;
+  height: 560px;
+  width: 100%;
+  margin-top: 15px;
+  margin-right: 15px;
 }
 </style>
