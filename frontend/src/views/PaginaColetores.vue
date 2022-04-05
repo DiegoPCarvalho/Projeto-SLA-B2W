@@ -4,7 +4,7 @@
         <h3>Coletores:</h3>
         <div class="rotas">
           <div class="bt1">
-            <router-link to="/AguardandoChegarColetores" class="caminho1">Aguardando Chegar na Zhaz</router-link> 
+            <router-link  to="/AguardandoChegarColetores" class="caminho1">Aguardando Chegar na Zhaz</router-link> 
           </div>
           <div class="bt2">
             <router-link to="/AguardandoVistoriaColetores" class="caminho2">Aguardando Vistoria</router-link>
@@ -29,15 +29,17 @@
           </div>
         </div>
       </div>
-      <div class="tb">
-        <h1> Tabels </h1>
+      <div class ="quadro" >
+        <h1 class="texto"><i> Bem vindo a Consulta dos Coletores</i></h1>
         <router-view></router-view>
       </div>     
   </div>
 </template>
 
 <script>
-
+  export default {
+   
+  }
 </script>
 
 
@@ -60,11 +62,10 @@
   font-size: 50px;
   font-weight: bold;
 }
-.tb {
-  border: 5px solid;
+.quadro {
   height: 540px;
   width: 79%;
-  margin-left: 10px;
+  margin-left: 20px;
 }
 .rotas {
   display: flex;
@@ -110,6 +111,14 @@
   justify-content: center;
   text-decoration: none;
   color: white;
+  font-weight: bold;
+}
+
+.texto > i {
+  display: flex;
+  justify-content: center;
+
+  font-family: 'Times New Roman';
   font-weight: bold;
 }
 </style>
