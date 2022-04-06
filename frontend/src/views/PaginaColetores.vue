@@ -25,12 +25,15 @@
             <router-link to="/ReprovadoColetores" class="caminho1">Reprovado</router-link>
           </div>
           <div class="bt2">
-            <router-link to="/FinalizadosColetores" class="caminho2">Finalizada</router-link>
+            <router-link to="/ExpedicaoFaturamentoColetores" class="caminho2">Expedição e Faturamento</router-link>
+          </div>
+          <div class="bt1">
+            <router-link to="/FinalizadosColetores" class="caminho1">Finalizada</router-link>
           </div>
         </div>
       </div>
-      <div class ="quadro" >
-        <h1 class="texto"><i> Bem vindo a Consulta dos Coletores</i></h1>
+      <div class="quadro" >
+        <h1 class="texto"><i> Bem Vindo a Consulta dos Coletores por Estagio</i></h1>
         <router-view></router-view>
       </div>     
   </div>
@@ -77,7 +80,7 @@
   text-decoration: none;
   color: white;
   border: 3px solid rgba(0,255,20,1);
-  padding: 10px;
+  padding: 7px;
   border-radius: 15px; 
   margin-left: 5px;
   background-color: rgba(0,255,20,1);
@@ -90,7 +93,7 @@
   text-decoration: none;
   color: white;
   border: 3px solid rgb(9, 66, 223);
-  padding: 10px;
+  padding: 7px;
   border-radius: 15px; 
   margin-left: 5px;
   background-color: rgb(9, 66, 223);

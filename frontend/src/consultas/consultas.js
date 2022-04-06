@@ -1,16 +1,22 @@
+//#region Configuração 
 const express = require('express');
 const app = express();
 const cors = require('cors');
 const port = 5000;
+require('dotenv').config();
+const key = process.env.KEY
 
 app.use(cors());
 const axios = require('axios');
-const chave = require('../../chave.js');
+//#endregion
 
-//Tipo de Contrato
+//#region Tipo de Manutenção  
 const tipoOSContrato = "CONTRATO B2W (MANUT. LAB / ON SITE)"
+//#endregion
 
-//Modelo Coletores
+//#region Modelo de Equipamentos
+
+//#region Modelo Coletores
 const skorpioX3 = "COLETOR DE DADOS DATALAOGIC SKORPIO X3 - 50 TECLAS WINDOWS MOBILE 6.5";
 const motorola9090wb5C = "COLETOR DE DADOS MOTOROLA MC9090 GUN WIN MOBILE/LASER CURTA DISTANCIA";
 const motorola9090wb5L = "COLETOR DE DADOS MOTOROLA MC9090 GUN WIN MOBILE/LASER LONGA DISTANCIA";
@@ -23,21 +29,34 @@ const motorola9190ce6L = "COLETOR MOTOROLA MC9190G WINDOWS CE / LASER DE LONGA D
 const eda50 = "COLETOR DE DADOS HONEYWELL EDA50 COM ANDROID";
 const eda50k = "COLETOR DE DADOS HONEYWELL SCANPAL EDA50K";
 const eda51 = "COLETOR DE DADOS HONEYWELL EDA51 ANDROID , 2D , WIFI , BLUETOOTH , NFC";
+//#endregion
+
+//#region Modelo Impressoras
+    const impressoaS4M = "IMPRESSORA TERMICA ZEBRA S4M 203 DPI C/ USB , PARALELO , SERIAL";
+    const impressoraZT230 = "IMPRESSORA TÉRMICA ZEBRA ZT230 - 203 DPI";
+    const impressora110XI3 = "IMPRESSORA TÉRMICA ZEBRA 110XiIII";
+    const impressora110XI4 = "IMPRESSORA TÉRMICA ZEBRA 110XI4";
+    const impressoraAgorxOS214 = "IMPRESSORA TÉRMICA ARGOX OS-214 PLUS";
+    const impressoraGC420T = "IMPRESSORA TERMICA ZEBRA GC420T";
+
+//#endregion
 
 
+//#endregion
 
+//#region Api Coletores
 app.get('/coletores/:estagio', async (req, res) => {
         const estagioReq  = req.params.estagio; 
-        const data = await axios(`https://cosmoserp.com/zhaz/aWSPCosmosFBX.aspx?${chave.key},vApiOS,${estagioReq}`);
+        const data = await axios(`https://cosmoserp.com/zhaz/aWSPCosmosFBX.aspx?${key},vApiOS,${estagioReq}`);
         const coletores = data.data;
-        let dadosChegar = { dado: [] };
+        let dadosColetores = { dado: [] };
 
 
         for (let i = 0; i < coletores.length; i++) {
             let descricao = coletores[i].DescricaoTipoOS;
             let Equipamento = coletores[i].NomeEquipamento;
             if ((descricao === tipoOSContrato) && (Equipamento == skorpioX3)) {
-                dadosChegar.dado.push({
+                dadosColetores.dado.push({
                     OS: coletores[i].OSID,
                     Data: coletores[i].OSData,
                     Cliente: coletores[i].PessoaFantasia,
@@ -47,7 +66,7 @@ app.get('/coletores/:estagio', async (req, res) => {
                 })
             }
             if ((descricao === tipoOSContrato) && (Equipamento == motorola9090wb5C)) {
-                dadosChegar.dado.push({
+                dadosColetores.dado.push({
                     OS: coletores[i].OSID,
                     Data: coletores[i].OSData,
                     Cliente: coletores[i].PessoaFantasia,
@@ -57,7 +76,7 @@ app.get('/coletores/:estagio', async (req, res) => {
                 })
             }
             if ((descricao === tipoOSContrato) && (Equipamento == motorola9090wb5L)) {
-                dadosChegar.dado.push({
+                dadosColetores.dado.push({
                     OS: coletores[i].OSID,
                     Data: coletores[i].OSData,
                     Cliente: coletores[i].PessoaFantasia,
@@ -67,7 +86,7 @@ app.get('/coletores/:estagio', async (req, res) => {
                 })
             }
             if ((descricao === tipoOSContrato) && (Equipamento == motorola9090brik)) {
-                dadosChegar.dado.push({
+                dadosColetores.dado.push({
                     OS: coletores[i].OSID,
                     Data: coletores[i].OSData,
                     Cliente: coletores[i].PessoaFantasia,
@@ -77,7 +96,7 @@ app.get('/coletores/:estagio', async (req, res) => {
                 })
             }
             if ((descricao === tipoOSContrato) && (Equipamento == motorola9090ce5C)) {
-                dadosChegar.dado.push({
+                dadosColetores.dado.push({
                     OS: coletores[i].OSID,
                     Data: coletores[i].OSData,
                     Cliente: coletores[i].PessoaFantasia,
@@ -87,7 +106,7 @@ app.get('/coletores/:estagio', async (req, res) => {
                 })
             }
             if ((descricao === tipoOSContrato) && (Equipamento == motorola9090ce5L)) {
-                dadosChegar.dado.push({
+                dadosColetores.dado.push({
                     OS: coletores[i].OSID,
                     Data: coletores[i].OSData,
                     Cliente: coletores[i].PessoaFantasia,
@@ -97,7 +116,7 @@ app.get('/coletores/:estagio', async (req, res) => {
                 })
             }
             if ((descricao === tipoOSContrato) && (Equipamento == motorola9190ce6C)) {
-                dadosChegar.dado.push({
+                dadosColetores.dado.push({
                     OS: coletores[i].OSID,
                     Data: coletores[i].OSData,
                     Cliente: coletores[i].PessoaFantasia,
@@ -107,7 +126,7 @@ app.get('/coletores/:estagio', async (req, res) => {
                 })
             }
             if ((descricao === tipoOSContrato) && (Equipamento == motorola9190ce6L)) {
-                dadosChegar.dado.push({
+                dadosColetores.dado.push({
                     OS: coletores[i].OSID,
                     Data: coletores[i].OSData,
                     Cliente: coletores[i].PessoaFantasia,
@@ -117,7 +136,7 @@ app.get('/coletores/:estagio', async (req, res) => {
                 })
             }
             if ((descricao === tipoOSContrato) && (Equipamento == motorola9190wm65C)) {
-                dadosChegar.dado.push({
+                dadosColetores.dado.push({
                     OS: coletores[i].OSID,
                     Data: coletores[i].OSData,
                     Cliente: coletores[i].PessoaFantasia,
@@ -127,7 +146,7 @@ app.get('/coletores/:estagio', async (req, res) => {
                 })
             }
             if ((descricao === tipoOSContrato) && (Equipamento == eda50)) {
-                dadosChegar.dado.push({
+                dadosColetores.dado.push({
                     OS: coletores[i].OSID,
                     Data: coletores[i].OSData,
                     Cliente: coletores[i].PessoaFantasia,
@@ -137,7 +156,7 @@ app.get('/coletores/:estagio', async (req, res) => {
                 })
             }
             if ((descricao === tipoOSContrato) && (Equipamento == eda50k)) {
-                dadosChegar.dado.push({
+                dadosColetores.dado.push({
                     OS: coletores[i].OSID,
                     Data: coletores[i].OSData,
                     Cliente: coletores[i].PessoaFantasia,
@@ -147,7 +166,7 @@ app.get('/coletores/:estagio', async (req, res) => {
                 })
             }
             if ((descricao === tipoOSContrato) && (Equipamento == eda51)) {
-                dadosChegar.dado.push({
+                dadosColetores.dado.push({
                     OS: coletores[i].OSID,
                     Data: coletores[i].OSData,
                     Cliente: coletores[i].PessoaFantasia,
@@ -157,9 +176,88 @@ app.get('/coletores/:estagio', async (req, res) => {
                 })
             }
         }    
-    res.json(dadosChegar.dado);
+    res.json(dadosColetores.dado);
 })
+//#endregion
 
+//#region Api Impressoras
+    app.get('/impressoras/:estagio', async (req, res) => {
+        const estagioReq = req.params.estagio;
+        const dataImp = await axios(`https://cosmoserp.com/zhaz/aWSPCosmosFBX.aspx?${key},vApiOS,${estagioReq}`);
+        const impressoras = dataImp.data;
+        let dadosImpressoras = { dado: [] };
+
+        for (let i = 0; i < impressoras.length; i++) {
+            let descricao = impressoras[i].DescricaoTipoOS;
+            let Equipamento = impressoras[i].NomeEquipamento;
+            if ((descricao === tipoOSContrato) && (Equipamento == impressoaS4M)) {
+                dadosImpressoras.dado.push({
+                    OS: impressoras[i].OSID,
+                    Data: impressoras[i].OSData,
+                    Cliente: impressoras[i].PessoaFantasia,
+                    Equipamento: impressoras[i].NomeEquipamento,
+                    NS: impressoras[i].EquipamentoLTS,
+                    Data_Move: impressoras[i].DataFinalMovto
+                })
+            }
+            if ((descricao === tipoOSContrato) && (Equipamento == impressoraZT230)) {
+                dadosImpressoras.dado.push({
+                    OS: impressoras[i].OSID,
+                    Data: impressoras[i].OSData,
+                    Cliente: impressoras[i].PessoaFantasia,
+                    Equipamento: impressoras[i].NomeEquipamento,
+                    NS: impressoras[i].EquipamentoLTS,
+                    Data_Move: impressoras[i].DataFinalMovto
+                })
+            }
+            if ((descricao === tipoOSContrato) && (Equipamento == impressora110XI3)) {
+                dadosImpressoras.dado.push({
+                    OS: impressoras[i].OSID,
+                    Data: impressoras[i].OSData,
+                    Cliente: impressoras[i].PessoaFantasia,
+                    Equipamento: impressoras[i].NomeEquipamento,
+                    NS: impressoras[i].EquipamentoLTS,
+                    Data_Move: impressoras[i].DataFinalMovto
+                })
+            }
+            if ((descricao === tipoOSContrato) && (Equipamento == impressora110XI4)) {
+                dadosImpressoras.dado.push({
+                    OS: impressoras[i].OSID,
+                    Data: impressoras[i].OSData,
+                    Cliente: impressoras[i].PessoaFantasia,
+                    Equipamento: impressoras[i].NomeEquipamento,
+                    NS: impressoras[i].EquipamentoLTS,
+                    Data_Move: impressoras[i].DataFinalMovto
+                })
+            }
+            if ((descricao === tipoOSContrato) && (Equipamento == impressoraAgorxOS214)) {
+                dadosImpressoras.dado.push({
+                    OS: impressoras[i].OSID,
+                    Data: impressoras[i].OSData,
+                    Cliente: impressoras[i].PessoaFantasia,
+                    Equipamento: impressoras[i].NomeEquipamento,
+                    NS: impressoras[i].EquipamentoLTS,
+                    Data_Move: impressoras[i].DataFinalMovto
+                })
+            }
+            if ((descricao === tipoOSContrato) && (Equipamento == impressoraGC420T)) {
+                dadosImpressoras.dado.push({
+                    OS: impressoras[i].OSID,
+                    Data: impressoras[i].OSData,
+                    Cliente: impressoras[i].PessoaFantasia,
+                    Equipamento: impressoras[i].NomeEquipamento,
+                    NS: impressoras[i].EquipamentoLTS,
+                    Data_Move: impressoras[i].DataFinalMovto
+                })
+            }
+        }
+
+        res.send(dadosImpressoras.dado)
+    })
+
+//#endregion
+
+//#region Servidor
 app.listen(port, () => {
     try {
         console.log("Servidor rodando http://localhost:" + port);
@@ -168,3 +266,4 @@ app.listen(port, () => {
         console.log("Error: " + error);
     }
 })
+//#endregion

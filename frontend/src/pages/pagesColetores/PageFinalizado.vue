@@ -1,7 +1,8 @@
 <template>
   <div>
     <h1 class="titulo d-flex justify-content-center">
-      <i class="d-flex justify-content-center"> 
+      <i class="d-flex justify-content-center"
+       style="background-color: rgb(12, 74, 195)"> 
         Finalizada
       </i>
     </h1>

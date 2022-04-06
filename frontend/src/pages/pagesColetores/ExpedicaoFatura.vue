@@ -2,7 +2,7 @@
   <div>
     <h1 class="titulo d-flex justify-content-center">
       <i class="d-flex justify-content-center"> 
-        Manutenção Concluída
+        Expedição e Faturamento
       </i>
     </h1>
    <div class="paginacaoProcura">
@@ -43,7 +43,7 @@ export default {
     };
   },
   mounted () {
-    axios.get("http://localhost:5000/impressoras/11").then((res) => {
+    axios.get("http://localhost:5000/coletores/13").then((res) => {
       this.coletores = res.data;
     });
   },
