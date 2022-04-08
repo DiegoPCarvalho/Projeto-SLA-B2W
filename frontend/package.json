@@ -7,7 +7,8 @@
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint",
     "prod": "json-server --watch db.json --port 3001",
-    "dev": "nodemon src/consultas/consultas.js"
+    "dev": "nodemon src/consultas/consultas.js",
+    "start": "node src/consultas/consultas.js"
   },
   "dependencies": {
     "axios": "^0.26.1",
