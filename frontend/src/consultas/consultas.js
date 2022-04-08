@@ -18,6 +18,7 @@ const tipoOSContrato = "CONTRATO B2W (MANUT. LAB / ON SITE)"
 
 //#region Modelo Coletores
 const skorpioX3 = "COLETOR DE DADOS DATALAOGIC SKORPIO X3 - 50 TECLAS WINDOWS MOBILE 6.5";
+const skorpio = "COLETOR DE DADOS DATALOGIC SKORPIO";
 const motorola9090wb5C = "COLETOR DE DADOS MOTOROLA MC9090 GUN WIN MOBILE/LASER CURTA DISTANCIA";
 const motorola9090wb5L = "COLETOR DE DADOS MOTOROLA MC9090 GUN WIN MOBILE/LASER LONGA DISTANCIA";
 const motorola9090brik = "COLETOR DE DADOS MOTOROLA MC9090K";
@@ -41,6 +42,21 @@ const eda51 = "COLETOR DE DADOS HONEYWELL EDA51 ANDROID , 2D , WIFI , BLUETOOTH 
 
 //#endregion
 
+//#region Modelo Leitores
+    const baseLS3578 = "BASE DO LEITOR DE DADOS SYMBOL LS3578";
+    const leitorDS3578 = "LEITOR DE DADOS MOTOROLA DS3578";
+    const leitorLS3578 = "LEITOR DE DADOS MOTOROLA LS3578";
+    const leitorLS2208 = "LEITOR DE DADOS MOTOROLA LS2208";
+    const leitorLI4278 = "LEITOR DE DADOS MOTOROLA LI4278 BLUETOOTH";
+    const leitorLS3408b = "LEITOR DE DADOS MOTOROLA LS3408 COM BASE";
+    const leitorLS3408u = "LEITOR DE DADOS MOTOROLA LS3408 USB";
+    const leitorDatalogicGD4430 = "LEITOR DE DADOS 2D DATALOGIC GRYPHON GD4430 USB";
+    const leitorDatalogicGM4400 = "LEITOR DE DADOS 2D DATALOGIC GRYPHON GM4400 BLUETOOTH";
+    const leitorHoneyVoy1202G = "LEITOR DE DADOS HONEYWELL VOYAGER 1202G";
+    const leitorCompexH100 = "LEITOR DE DADOS COMPEX CPX-HR100";
+    const leitorDS2278 = "LEITOR DE CODIGO DE BARRAS SYMBOL DS2278";
+    const leitorDS2278b = "BASE DO LEITOR ZEBRA DS2278";
+//#endregion
 
 //#endregion
 
@@ -50,7 +66,7 @@ app.get('/coletores/:estagio', async (req, res) => {
         const data = await axios(`https://cosmoserp.com/zhaz/aWSPCosmosFBX.aspx?${key},vApiOS,${estagioReq}`);
         const coletores = data.data;
         let dadosColetores = { dado: [] };
-
+        await formataData(coletores);
 
         for (let i = 0; i < coletores.length; i++) {
             let descricao = coletores[i].DescricaoTipoOS;
@@ -175,6 +191,16 @@ app.get('/coletores/:estagio', async (req, res) => {
                     Data_Move: coletores[i].DataFinalMovto
                 })
             }
+            if ((descricao === tipoOSContrato) && (Equipamento == skorpio)) {
+                dadosColetores.dado.push({
+                    OS: coletores[i].OSID,
+                    Data: coletores[i].OSData,
+                    Cliente: coletores[i].PessoaFantasia,
+                    Equipamento: coletores[i].NomeEquipamento,
+                    NS: coletores[i].EquipamentoLTS,
+                    Data_Move: coletores[i].DataFinalMovto
+                })
+            }
         }    
     res.json(dadosColetores.dado);
 })
@@ -186,6 +212,7 @@ app.get('/coletores/:estagio', async (req, res) => {
         const dataImp = await axios(`https://cosmoserp.com/zhaz/aWSPCosmosFBX.aspx?${key},vApiOS,${estagioReq}`);
         const impressoras = dataImp.data;
         let dadosImpressoras = { dado: [] };
+        await formataData(impressoras);
 
         for (let i = 0; i < impressoras.length; i++) {
             let descricao = impressoras[i].DescricaoTipoOS;
@@ -252,12 +279,160 @@ app.get('/coletores/:estagio', async (req, res) => {
             }
         }
 
-        res.send(dadosImpressoras.dado)
+        res.json(dadosImpressoras.dado)
     })
 
 //#endregion
 
+//#region Api Leitores
+    app.get('/leitores/:estagio', async(req, res) => {
+        const estagioReq = req.params.estagio;
+        const dataLeitor = await axios(`https://cosmoserp.com/zhaz/aWSPCosmosFBX.aspx?${key},vApiOS,${estagioReq}`);
+        const leitores = dataLeitor.data;
+        let dadosLeitores = { dado : [] };
+        await formataData(leitores);
+
+        for (let i = 0; i < leitores.length; i++) {
+            let descricao = leitores[i].DescricaoTipoOS;
+            let Equipamento = leitores[i].NomeEquipamento;
+            if ((descricao === tipoOSContrato) && (Equipamento == baseLS3578)) {
+                dadosLeitores.dado.push({
+                    OS: leitores[i].OSID,
+                    Data: leitores[i].OSData,
+                    Cliente: leitores[i].PessoaFantasia,
+                    Equipamento: leitores[i].NomeEquipamento,
+                    NS: leitores[i].EquipamentoLTS,
+                    Data_Move: leitores[i].DataFinalMovto
+                })
+            }
+            if ((descricao === tipoOSContrato) && (Equipamento == leitorDS3578)) {
+                dadosLeitores.dado.push({
+                    OS: leitores[i].OSID,
+                    Data: leitores[i].OSData,
+                    Cliente: leitores[i].PessoaFantasia,
+                    Equipamento: leitores[i].NomeEquipamento,
+                    NS: leitores[i].EquipamentoLTS,
+                    Data_Move: leitores[i].DataFinalMovto
+                })
+            }
+            if ((descricao === tipoOSContrato) && (Equipamento == leitorLS3578)) {
+                dadosLeitores.dado.push({
+                    OS: leitores[i].OSID,
+                    Data: leitores[i].OSData,
+                    Cliente: leitores[i].PessoaFantasia,
+                    Equipamento: leitores[i].NomeEquipamento,
+                    NS: leitores[i].EquipamentoLTS,
+                    Data_Move: leitores[i].DataFinalMovto
+                })
+            }
+            if ((descricao === tipoOSContrato) && (Equipamento == leitorLS2208)) {
+                dadosLeitores.dado.push({
+                    OS: leitores[i].OSID,
+                    Data: leitores[i].OSData,
+                    Cliente: leitores[i].PessoaFantasia,
+                    Equipamento: leitores[i].NomeEquipamento,
+                    NS: leitores[i].EquipamentoLTS,
+                    Data_Move: leitores[i].DataFinalMovto
+                })
+            }
+            if ((descricao === tipoOSContrato) && (Equipamento == leitorLI4278)) {
+                dadosLeitores.dado.push({
+                    OS: leitores[i].OSID,
+                    Data: leitores[i].OSData,
+                    Cliente: leitores[i].PessoaFantasia,
+                    Equipamento: leitores[i].NomeEquipamento,
+                    NS: leitores[i].EquipamentoLTS,
+                    Data_Move: leitores[i].DataFinalMovto
+                })
+            }
+            if ((descricao === tipoOSContrato) && (Equipamento == leitorLS3408b)) {
+                dadosLeitores.dado.push({
+                    OS: leitores[i].OSID,
+                    Data: leitores[i].OSData,
+                    Cliente: leitores[i].PessoaFantasia,
+                    Equipamento: leitores[i].NomeEquipamento,
+                    NS: leitores[i].EquipamentoLTS,
+                    Data_Move: leitores[i].DataFinalMovto
+                })
+            }
+            if ((descricao === tipoOSContrato) && (Equipamento == leitorLS3408u)) {
+                dadosLeitores.dado.push({
+                    OS: leitores[i].OSID,
+                    Data: leitores[i].OSData,
+                    Cliente: leitores[i].PessoaFantasia,
+                    Equipamento: leitores[i].NomeEquipamento,
+                    NS: leitores[i].EquipamentoLTS,
+                    Data_Move: leitores[i].DataFinalMovto
+                })
+            }
+            if ((descricao === tipoOSContrato) && (Equipamento == leitorDatalogicGD4430)) {
+                dadosLeitores.dado.push({
+                    OS: leitores[i].OSID,
+                    Data: leitores[i].OSData,
+                    Cliente: leitores[i].PessoaFantasia,
+                    Equipamento: leitores[i].NomeEquipamento,
+                    NS: leitores[i].EquipamentoLTS,
+                    Data_Move: leitores[i].DataFinalMovto
+                })
+            }
+            if ((descricao === tipoOSContrato) && (Equipamento == leitorDatalogicGM4400)) {
+                dadosLeitores.dado.push({
+                    OS: leitores[i].OSID,
+                    Data: leitores[i].OSData,
+                    Cliente: leitores[i].PessoaFantasia,
+                    Equipamento: leitores[i].NomeEquipamento,
+                    NS: leitores[i].EquipamentoLTS,
+                    Data_Move: leitores[i].DataFinalMovto
+                })
+            }
+            if ((descricao === tipoOSContrato) && (Equipamento == leitorHoneyVoy1202G)) {
+                dadosLeitores.dado.push({
+                    OS: leitores[i].OSID,
+                    Data: leitores[i].OSData,
+                    Cliente: leitores[i].PessoaFantasia,
+                    Equipamento: leitores[i].NomeEquipamento,
+                    NS: leitores[i].EquipamentoLTS,
+                    Data_Move: leitores[i].DataFinalMovto
+                })
+            }
+            if ((descricao === tipoOSContrato) && (Equipamento == leitorCompexH100)) {
+                dadosLeitores.dado.push({
+                    OS: leitores[i].OSID,
+                    Data: leitores[i].OSData,
+                    Cliente: leitores[i].PessoaFantasia,
+                    Equipamento: leitores[i].NomeEquipamento,
+                    NS: leitores[i].EquipamentoLTS,
+                    Data_Move: leitores[i].DataFinalMovto
+                })
+            }
+            if ((descricao === tipoOSContrato) && (Equipamento == leitorDS2278)) {
+                dadosLeitores.dado.push({
+                    OS: leitores[i].OSID,
+                    Data: leitores[i].OSData,
+                    Cliente: leitores[i].PessoaFantasia,
+                    Equipamento: leitores[i].NomeEquipamento,
+                    NS: leitores[i].EquipamentoLTS,
+                    Data_Move: leitores[i].DataFinalMovto
+                })
+            }
+            if ((descricao === tipoOSContrato) && (Equipamento == leitorDS2278b)) {
+                dadosLeitores.dado.push({
+                    OS: leitores[i].OSID,
+                    Data: leitores[i].OSData,
+                    Cliente: leitores[i].PessoaFantasia,
+                    Equipamento: leitores[i].NomeEquipamento,
+                    NS: leitores[i].EquipamentoLTS,
+                    Data_Move: leitores[i].DataFinalMovto
+                })
+            }
+        }
+      
+        res.send(dadosLeitores.dado)
+    })
+//#endregion
+
 //#region Servidor
+
 app.listen(port, () => {
     try {
         console.log("Servidor rodando http://localhost:" + port);
@@ -266,4 +441,29 @@ app.listen(port, () => {
         console.log("Error: " + error);
     }
 })
+//#endregion
+
+//#region formatação de data e hora
+
+formataData = async (dataItem) => {
+    for (var i = 0; i < dataItem.length; i++) {
+        var dataA = dataItem[i];
+        var dataF = await dataA.OSData.replace(/(\d*)-(\d*)-(\d*)T(\d*):(\d*).*/, '$3/$2/$1-$4:$5');
+        dataA.OSData = await dataF;
+    }
+
+    for (var i = 0; i < dataItem.length; i++) {
+        var dataA = dataItem[i];
+        var dataF = await dataA.DataFinalMovto.replace(/(\d*)-(\d*)-(\d*)T(\d*):(\d*).*/, '$3/$2/$1 $4:$5');
+        dataA.DataFinalMovto = await dataF;
+    }
+}
+
+formataHora = async (dataHora) =>{
+    for (var i = 0; i < dataHora.length; i++) {
+        var data = await dataHora[i];
+        var hora = await data.DataFinalMovto.replace(/(\d*)/, )  
+    }
+}
+
 //#endregion

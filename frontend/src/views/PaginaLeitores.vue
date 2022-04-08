@@ -32,8 +32,8 @@
           </div>
         </div>
       </div>
-      <div class="tb">
-        <h1> Tabels </h1>
+      <div class="quadro">
+        <h1 class="texto"><i> Bem Vindo a Consulta dos Leitores por Estagio</i></h1>
         <router-view></router-view>
       </div>     
   </div>
